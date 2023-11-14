@@ -20,5 +20,17 @@ from  . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.agendar, name='agendar')
+    path('', views.inicio, name='inicio'),
+    path('login', views.login, name='login'),
+    path('agendar/', views.agendar, name='agendar'),
+    path('index/', views.index, name='index'),
+    path('indexr/', views.indexr, name='indexr'),
+    path('Menu/', views.Menu, name='Menu'),
+    path('menuAdmin/', views.menuAdmin, name='menuAdmin'),
+    path('verAgenda/', views.verAgenda, name='verAgenda'),
+    path('asignarR/', views.asignarR, name='asignarR'),
+    path('contactos/', views.contactos, name='contactos'),
+    path('crearCita/', views.crearCita, name='crearCita'),
+    path('editarCita/', views.editarCita, name='editarCita'),
+    path('form/', views.form, name='form'),
 ]

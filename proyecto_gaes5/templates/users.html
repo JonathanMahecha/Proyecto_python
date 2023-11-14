@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Menu desplegable</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+</head>
+<body>
+    <div class="sidebar close">
+        <div class="logo-details">
+            <img src="{{ asset('img/Carro.jpg') }}" alt="">
+            <span class="logo_name">Don-Speed's-Fierro</span>
+        </div>
+        <ul class="nav-links">
+            <li>
+                <a href="{{ path('admin_menu') }}">
+                    <i class='bx bx-grid-alt'></i>
+                    <span class="link_name">Inicio</span>
+                </a>
+            </li>
+            <li>
+                <div class="iocn-link">
+                    <a href="{{ path('ver_agenda') }}">
+                        <i class='bx bx-collection'></i>
+                        <span class="link_name">Ver agenda</span>
+                    </a>
+                </div>
+            </li>
+            <li>
+                <a href="{{ path('users') }}">
+                    <i class='bx bx-history'></i>
+                    <span class="link_name">Usuarios</span>
+                </a>
+            </li>
+            <li>
+                <div class="iocn-link">
+                    <a href="{{ path('garantias') }}">
+                        <i class='bx bx-collection'></i>
+                        <span class="link_name">Garantias</span>
+                    </a>
+                </div>
+            </li>
+            <li>
+                <div class="profile-details">
+                    <div class="profile-content">
+                    </div>
+                    <div class="name-job">
+                        <div class="profile_name">Don Speeds Fierro</div>
+                        <div class="job">Cliente</div>
+                    </div>
+                    <form id="logout-form" action="{{ path('logout') }}" method="POST" style="display: none;">
+                    </form>
+                    <div class="bx bx-log-out" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"></div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <section class="home-section">
+        <div class="home-content">
+            <i class='bx bx-menu'></i>
+            <span class="text">Menu</span>
+        </div>
+        <!-- Aquí se integra la tabla de usuarios -->
+        <div class="container text-center">
+            <h1>Lista de usuarios</h1>
+            <table class="table table-striped table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>User ID</th>
+                        <th>E-mail</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Roles</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in listUsers %}
+                        <tr>
+                            <td>{{ user.id }}</td>
+                            <td>{{ user.email }}</td>
+                            <td>{{ user.firstName }}</td>
+                            <td>{{ user.lastName }}</td>
+                            <td>{{ user.roles }}</td>
+                            <td><a href="{{ path('user_edit', {'id': user.id}) }}">Edit</a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+    <script>
+        let sidebar = document.querySelector(".sidebar");
+        let sidebarBtn = document.querySelector(".bx-menu");
+        console.log(sidebarBtn);
+        sidebarBtn.addEventListener("click", () => {
+            sidebar.classList.toggle("close");
+        });
+    </script>
+</body>
+</html>

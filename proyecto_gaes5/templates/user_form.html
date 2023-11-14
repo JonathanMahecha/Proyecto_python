@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Edit User - CodeJava</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/bootstrap.min.css' %}" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container text-center">
+        <div>
+            <h1>Edit User</h1>
+        </div>
+        <form action="{% url 'users:save' %}" method="post" style="max-width: 600px; margin: 0 auto;">
+            {% csrf_token %}
+            <input type="hidden" name="id" value="{{ user.id }}" />
+            <div class="m-3">
+                <div class="form-group row">
+                    <label for="email" class="col-4 col-form-label">E-mail: </label>
+                    <div class="col-8">
+                        <input type="email" name="email" value="{{ user.email }}" class="form-control" required />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="password" class="col-4 col-form-label">Password: </label>
+                    <div class="col-8">
+                        <input type="password" name="password" class="form-control" 
+                            required minlength="6" maxlength="10" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="firstName" class="col-4 col-form-label">First Name: </label>
+                    <div class="col-8">
+                        <input type="text" name="firstName" value="{{ user.firstName }}" class="form-control" 
+                            required minlength="2" maxlength="20" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="lastName" class="col-4 col-form-label">Last Name: </label>
+                    <div class="col-8">
+                        <input type="text" name="lastName" value="{{ user.lastName }}" class="form-control" 
+                            required minlength="2" maxlength="20" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="roles" class="col-4 col-form-label">Roles: </label>
+                    <div class="col-8">
+                        {% for role in listRoles %}
+                            <input type="checkbox" name="roles" value="{{ role.id }}" class="m-2"
+                                {% if role in user.roles.all %} checked {% endif %} />
+                            {{ role.name }}
+                        {% endfor %}
+                    </div>
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-primary">Update</button> 
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

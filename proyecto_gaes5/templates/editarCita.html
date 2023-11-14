@@ -1,0 +1,129 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Editar cita</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/Styles.css' %}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+
+    <div class="sidebar close">
+        <div class="logo-details">
+            <img src="{% static 'img/Carro.jpg' %}" alt="">
+            <span class="logo_name">Don-Speed's-Fierro</span>
+        </div>
+        <ul class="nav-links">
+            <li>
+                <a href="{% url 'Menu' %}">
+                    <i class='bx bx-grid-alt'></i>
+                    <span class="link_name">Inicio</span>
+                </a>
+            </li>
+            <li>
+                <div class="iocn-link">
+                    <a href="{% url 'agendar' %}">
+                        <i class='bx bx-collection'></i>
+                        <span class="link_name">Agendar</span>
+                    </a>
+                </div>
+            </li>
+           
+            <li>
+                <a href="{% url 'contactos' %}">
+                    <i class='bx bx-pie-chart-alt-2'></i>
+                    <span class="link_name">Contactos</span>
+                </a>
+            </li>
+          
+            <li>
+                {% comment %} <div class="iocn-link">
+                    <a href="{% url 'garantias' %}">
+                        <i class='bx bx-collection'></i>
+                        <span class="link_name">Garantias</span>
+                    </a>
+                </div> {% endcomment %}
+            </li>
+            <li>
+                <div class="profile-details">
+                    <div class="profile-content">
+                    </div>
+                    <div class="name-job">
+                        <div class="profile_name">Don Speeds Fierro</div>
+                        <div class="job">Cliente</div>
+                    </div>
+                    {% comment %} <form id="logout-form" action="{% url 'logout' %}" method="POST" style="display: none;">
+                        {% csrf_token %}
+                    </form> {% endcomment %}
+                    <div class="bx bx-log-out"
+                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();"></div>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+                <h1 class="text-center">Edición de Estudiante</h1>
+                <div class="card-body">
+                    <form action="{% url 'agendar' estudiante.id %}" method="POST">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label>Nombre:</label>
+                            <input type="text" name="nombre" class="form-control" placeholder="Digite su nombre:" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Apellido:</label>
+                            <input type="text" name="apellido" class="form-control" placeholder="Digite su apellido:" required>
+                        </div>
+
+                        <div class"form-group">
+                            <label>Email:</label>
+                            <input type="email" name="email" class="form-control" placeholder="Digite su email:" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Tipo de Servicio:</label>
+                            <select name="tipo_servicio" class="form-control" required>
+                                <option value="">Seleccionar</option>
+                                <option value="Mantenimiento preventivo">Mantenimiento preventivo</option>
+                                <option value="Cambio de aceite y filtros">Cambio de aceite y filtros</option>
+                                <option value="Reparación de frenos">Reparación de frenos</option>
+                                <option value="Alineación y balanceo">Alineación y balanceo</option>
+                                <option value="Cambio de neumáticos">Cambio de neumáticos</option>
+                                <option value="Servicio de diagnóstico y reparación de averías">Servicio de diagnóstico y reparación de averías</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Fecha de Cita:</label>
+                            <input type="date" name="fechaCita" class="form-control" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Hora de Cita:</label>
+                            <input type="time" name="horaCita" class="form-control" required>
+                        </div>
+                        <div class="box-footer">
+                            <button class="btn btn-success">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        let sidebar = document.querySelector(".sidebar");
+        let sidebarBtn = document.querySelector(".bx-menu");
+        sidebarBtn.addEventListener("click", () => {
+            sidebar.classList.toggle("close");
+        });
+    </script>
+</body>
+</html>

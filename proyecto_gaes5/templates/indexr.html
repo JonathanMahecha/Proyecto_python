@@ -1,0 +1,45 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Resultados de Búsqueda</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/Styles.css' %}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<div class="container">
+    <h2>Resultados de Búsqueda</h2>
+    <a style="font-size: 12px; height: 40px;" href="{% url 'excel_generate' %}" class="btn btn-sm btn-success float-right">generar reporte por <br> filtros</a>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>IdGarantia</th>
+            <th>Codigo Garantia</th>
+            <th>Detalles Garantia</th>
+            <th>Fecha Vencimiento</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for garantia in resultados %}
+            <tr>
+                <td>{{ garantia.IdGarantia }}</td>
+                <td>{{ garantia.CodigoGarantia }}</td>
+                <td>{{ garantia.DetallesVehiculo }}</td>
+                <td>{{ garantia.FechaVencimiento }}</td>
+                <td>
+                    <a href="{% url 'editar' garantia.IdGarantia %}" class="btn btn-success">EDITAR</a>
+                    <a onclick="eliminar([[garantia.IdGarantia]])" class="btn btn-danger">ELIMINAR</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
