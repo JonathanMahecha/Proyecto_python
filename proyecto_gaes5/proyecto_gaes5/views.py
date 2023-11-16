@@ -41,10 +41,6 @@ def editarCita(request):
         #context
     })
     
-def form(request):
-    return render(request, 'form.html', {
-        #context
-    })
 
 def index(request):
     return render(request, 'index.html', {
@@ -69,19 +65,4 @@ def menuAdmin(request):
 def verAgenda(request):
     return render(request, 'verAgenda.html', {
         #context
-    })
-
-def login(request):
-    if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        user = authenticate(username=username, password=password)
-        if user:
-            login(request, user)
-            messages.success(request, 'Bienvenido {}'.format(user.username))
-            return redirect('Menu')
-        else: 
-            messages.error(request, 'Usuario o contraseña incorrectos')
-    return render(request, 'login.html',{
-
     })

@@ -56,9 +56,9 @@
                         <div class="profile_name">Don Speeds Fierro</div>
                         <div class="job">Cliente</div>
                     </div>
-                    {% comment %} <form id="logout-form" action="{% url 'logout' %}" method="POST" style="display: none">
+                     <form id="logout-form" action="{% url 'logout' %}" method="POST" style="display: none">
                         {% csrf_token %}
-                    </form> {% endcomment %}
+                    </form> 
                     <div class="bx bx-log-out" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"></div>
                 </div>
             </li>

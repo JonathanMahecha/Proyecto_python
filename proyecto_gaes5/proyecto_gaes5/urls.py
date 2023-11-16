@@ -17,11 +17,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from  . import views
+from sesiones import views
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.inicio, name='inicio'),
-    path('login', views.login, name='login'),
+    path('login', views.user_login, name='login'),
+    path('logout/', views.logout_view, name='logout'),
+    path('registro/', views.registro, name='registro'),
     path('agendar/', views.agendar, name='agendar'),
     path('index/', views.index, name='index'),
     path('indexr/', views.indexr, name='indexr'),
@@ -32,5 +36,4 @@ urlpatterns = [
     path('contactos/', views.contactos, name='contactos'),
     path('crearCita/', views.crearCita, name='crearCita'),
     path('editarCita/', views.editarCita, name='editarCita'),
-    path('form/', views.form, name='form'),
 ]
