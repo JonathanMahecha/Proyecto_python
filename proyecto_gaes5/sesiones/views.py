@@ -5,6 +5,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.shortcuts import render, redirect
 from proyecto_gaes5.views import *
+from .forms import RegistrationForm  
 
 def user_login(request):
     if request.method == 'POST':
@@ -21,14 +22,18 @@ def user_login(request):
 
 def registro(request):
     if request.method == 'POST':
-            username = request.POST.get('username')
-            password = request.POST.get('password')
-
+        form = RegistrationForm(request.POST)
+        if form.is_valid():
             user = form.save()
-            
             login(request, user)
+            messages.success(request, 'Registro exitoso. Bienvenido!')
             return redirect('Menu')
-    return render(request, 'registro.html')
+        else:
+            messages.error(request, 'Ha ocurrido un error en el registro. Por favor, verifica los datos.')
+    else:
+        form = RegistrationForm()
+    return render(request, 'registro.html', {'form': form})
+
 
 def logout_view(request):
     logout(request)

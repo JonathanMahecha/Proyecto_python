@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path
 from  . import views
 from sesiones import views
-
+from sesiones.forms import RegistrationForm
 
 urlpatterns = [
     path('admin/', admin.site.urls),

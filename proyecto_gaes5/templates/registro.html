@@ -91,13 +91,11 @@
             <h1>DON SPEED'S FIERRO</h1>
         </div>
     </header>
-    <form id="register-form" action="{% url 'registro' %}" method="post">
+    <form method="post">
         {% csrf_token %}
-        <div class="container">
-            {{ form.as_p }} 
-            <div class="mb-3 center-button">
-                <input type="submit" class="col-md-3 btn btn-primary" value="Register">
-            </div>
+        {{ form.as_p }}
+        <button type="submit">Registrarse</button>
+    </form>
             <br>
             <div class="d-grid gap-2 col-6 mx-auto">
                 <button type="button" class="btn btn-secondary">
@@ -105,7 +103,6 @@
                 </button>
             </div>
         </div>
-    </form>
 </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </body>
